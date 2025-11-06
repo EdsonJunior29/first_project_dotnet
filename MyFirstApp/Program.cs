@@ -27,7 +27,13 @@ app.Run(async (HttpContext context) =>
      * http://localhost:5287/dashboard?user=123&filter=active
      * Nesse exemplo da Url acima a parte da query string é: ?user=123&filter=active
      */
-    var queryString = context.Request.QueryString; 
+    var queryString = context.Request.QueryString;
+
+    /*Verificar se a queryString está na URL
+     * Caso esteja apresenta True
+     * Caso contrário apresenta False
+     */
+    var queryStringParameters = context.Request.Query.ContainsKey("user");
 
     // User-Agent do cliente
     /* ex: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) 
@@ -41,6 +47,7 @@ app.Run(async (HttpContext context) =>
     await context.Response.WriteAsync($"\nRequest Path: {path}");
     await context.Response.WriteAsync($"\nQuery String: {queryString}");
     await context.Response.WriteAsync($"\nUser-Agent: {userAgent}");
+    await context.Response.WriteAsync($"\nQuery String has 'user' parameter: {queryStringParameters}");
 
 
 });
