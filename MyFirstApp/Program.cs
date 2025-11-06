@@ -35,6 +35,10 @@ app.Run(async (HttpContext context) =>
      */
     var queryStringParameters = context.Request.Query.ContainsKey("user");
 
+    /*Obter o valor contido na queryString
+     */
+    var queryStringValue = context.Request.Query["user"].ToString();
+
     // User-Agent do cliente
     /* ex: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) 
      * Chrome/142.0.0.0 Safari/537.36
@@ -48,7 +52,7 @@ app.Run(async (HttpContext context) =>
     await context.Response.WriteAsync($"\nQuery String: {queryString}");
     await context.Response.WriteAsync($"\nUser-Agent: {userAgent}");
     await context.Response.WriteAsync($"\nQuery String has 'user' parameter: {queryStringParameters}");
-
+    await context.Response.WriteAsync($"\nValue of 'user' parameter: {queryStringValue}");
 
 });
 
