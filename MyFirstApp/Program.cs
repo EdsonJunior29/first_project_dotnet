@@ -14,10 +14,35 @@ app.Run(async (HttpContext context) =>
     //Retornando o content-type da resposta
     context.Response.Headers["Content-Type"] = "text/plain; charset=utf-8";
 
+    //Obter informações do request
+    var method = context.Request.Method; // Método HTTP (GET, POST, etc.)
+
+    /*Caminho da requisição (URL)
+     * Ao executar a URL: http://localhost:5287/path
+     * O path é essa parte da url em diante: /path
+     */
+    var path = context.Request.Path;
+
+    /* String de consulta
+     * http://localhost:5287/dashboard?user=123&filter=active
+     * Nesse exemplo da Url acima a parte da query string é: ?user=123&filter=active
+     */
+    var queryString = context.Request.QueryString; 
+
+    // User-Agent do cliente
+    /* ex: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) 
+     * Chrome/142.0.0.0 Safari/537.36
+     */
+    var userAgent = context.Request.Headers["User-Agent"].ToString(); 
+
     //Dado que será retorna na resposta da requisição
     await context.Response.WriteAsync("Hello, World!");
+    await context.Response.WriteAsync($"\nRequest Method: {method}");
+    await context.Response.WriteAsync($"\nRequest Path: {path}");
+    await context.Response.WriteAsync($"\nQuery String: {queryString}");
+    await context.Response.WriteAsync($"\nUser-Agent: {userAgent}");
 
-    
+
 });
 
 app.Run();
