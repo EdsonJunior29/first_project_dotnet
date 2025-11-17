@@ -22,9 +22,13 @@ app.Use(async (context, next) =>
  */
 app.UseMyCustomMiddleware();
 
+//Custom Middleware criado
+//clicar em add > new item > middleware
+app.UseHelloCustomMiddleware();
+
 app.Run(async (context) =>
 {
-    await context.Response.WriteAsync("Middleware 3");
+    await context.Response.WriteAsync("Middleware 4\n");
 });
 
 app.Run();
