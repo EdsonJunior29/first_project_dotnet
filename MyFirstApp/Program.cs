@@ -10,7 +10,7 @@ var app = builder.Build();
 
 app.Use(async (context, next) =>
 {
-    await context.Response.WriteAsync("Middleware 1");
+    await context.Response.WriteAsync("Middleware 1\n");
     await next(context);
 });
 
@@ -18,8 +18,9 @@ app.Use(async (context, next) =>
 /*Nesse exemplo adicionei o middleware personalizado
  * após o 1° middleware. Mas posso adicionar ele como o 
  * 1° se eu quiser.
+ * Nesse exemplo estou chamando o método da classe estática
  */
-app.UseMiddleware<MyCustomMiddleware>();
+app.UseMyCustomMiddleware();
 
 app.Run(async (context) =>
 {
