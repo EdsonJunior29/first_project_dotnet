@@ -1,4 +1,5 @@
 using MyFirstApp.CustomMiddleware;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +27,22 @@ app.UseMyCustomMiddleware();
 //clicar em add > new item > middleware
 app.UseHelloCustomMiddleware();
 
+
+app.UseWhen(
+   context => context.Request.Query.ContainsKey("keycloack"),
+   appBuilder => appBuilder.Use(async (context, next) =>
+   {
+       await context.Response.WriteAsync("Se for true vai passar por aqui");
+       await next(context);
+   })
+);
+
 app.Run(async (context) =>
 {
     await context.Response.WriteAsync("Middleware 4\n");
+
 });
+
+
 
 app.Run();
