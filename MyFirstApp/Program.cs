@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/map1", async (context) => {
-    await context.Response.WriteAsync("In map 1");
+app.MapGet("/map1/{filename}", async (context) => {
+    await context.Response.WriteAsync($"In map 1 {filename}");
 });
 
 app.MapPost("/map2", async (context) => {
