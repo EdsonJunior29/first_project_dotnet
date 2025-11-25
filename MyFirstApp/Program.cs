@@ -17,7 +17,7 @@ app.MapGET("/map3/{Employee=edson}", async (context) => {
     await context.Response.WriteAsync("In map 3: {Employee}");
 });
 
-app.MapGET("/map3/{Employee}", async (context) => {
+app.MapGET("/map3/{Employee?}", async (context) => {
     await context.Response.WriteAsync("In map 4: {Employee}");
 });
 
