@@ -17,6 +17,10 @@ app.MapGET("/map3/{Employee=edson}", async (context) => {
     await context.Response.WriteAsync("In map 3: {Employee}");
 });
 
+app.MapGET("/map3/{Employee}", async (context) => {
+    await context.Response.WriteAsync("In map 4: {Employee}");
+});
+
 //Nesse exemplo vamos criar uma URL de fallback
 //Quando o usuário acessar uma URL inexistênte 
 //Será redirecionado para a Fallback
